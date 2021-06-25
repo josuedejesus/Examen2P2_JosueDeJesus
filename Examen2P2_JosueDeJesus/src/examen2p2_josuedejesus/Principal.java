@@ -132,6 +132,11 @@ public class Principal extends javax.swing.JFrame {
                 jTabbedPane1StateChanged(evt);
             }
         });
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel1.setText("Crear Vehiculo");
@@ -707,17 +712,15 @@ public class Principal extends javax.swing.JFrame {
             nothibridoEnchufable();
             notElectrico();
         }
-        
-        if(cb_categoria.getSelectedItem().equals("Hibrido enchufable"))
-        {
+
+        if (cb_categoria.getSelectedItem().equals("Hibrido enchufable")) {
             hibridoEnchufable();
             notHibrido();
             notCombustion();
             notElectrico();
         }
-        
-        if(cb_categoria.getSelectedItem().equals("Electrico"))
-        {
+
+        if (cb_categoria.getSelectedItem().equals("Electrico")) {
             electrico();
             notCombustion();
             notHibrido();
@@ -731,6 +734,8 @@ public class Principal extends javax.swing.JFrame {
 
         administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
         av.cargarArchivo();
+        administrarCombustion ac = new administrarCombustion("./vehiculos.cbm");
+        ac.cargarArchivo();
 
         try {
             for (Vehiculo a : av.getListaVehiculos()) {
@@ -741,12 +746,15 @@ public class Principal extends javax.swing.JFrame {
             if (existe) {
                 JOptionPane.showMessageDialog(this, "El VIN ya existe!");
             } else {
-                if(cb_categoria.getSelectedItem().equals("Combustion"))
-                {
-                    Vehiculo c = new Combustion(cb_categoria.getSelectedItem().toString(), txt_marca.getText(), txt_modelo.getText(),Integer.parseInt(txt_vin.getText()), cb_carroceria.getSelectedItem().toString(),Integer.parseInt(txt_cilindrada.getText()), Integer.parseInt(txt_cilindros.getValue().toString()), Integer.parseInt(txt_consumo.getText()));
+                if (cb_categoria.getSelectedItem().equals("Combustion")) {
+                    Combustion c = new Combustion(cb_categoria.getSelectedItem().toString(), txt_marca.getText(), txt_modelo.getText(), Integer.parseInt(txt_vin.getText()), cb_carroceria.getSelectedItem().toString(), Integer.parseInt(txt_cilindrada.getText()), Integer.parseInt(txt_cilindros.getValue().toString()), Integer.parseInt(txt_consumo.getText()));
                     av.setVehiculo(c);
                     av.escribirArchivo();
                     JOptionPane.showMessageDialog(this, "Guardado exitosamente");
+                }
+                
+                if (cb_categoria.getSelectedItem().equals("Hibrido")) {
+                    
                 }
             }
         } catch (Exception ex) {
@@ -759,6 +767,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         refrescarVehiculos(jt_vehiculos);
         refrescarVehiculos(jt_vehiculos_mod);
+        notCombustion();
+        notElectrico();
+        notHibrido();
+        nothibridoEnchufable();
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
     private void cb_categoria1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_categoria1ActionPerformed
@@ -769,6 +781,8 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
         av.cargarArchivo();
+        administrarCombustion ac = new administrarCombustion("./vehiculos.cbm");
+        ac.cargarArchivo();
         if (jt_vehiculos_mod.getSelectedRow() >= 0) {
             button1.setEnabled(true);
             DefaultTableModel modelo = (DefaultTableModel) jt_vehiculos_mod.getModel();
@@ -776,19 +790,29 @@ public class Principal extends javax.swing.JFrame {
             vin = modelo.getValueAt(jt_vehiculos_mod.getSelectedRow(), 3).toString();
             categoria = modelo.getValueAt(jt_vehiculos_mod.getSelectedRow(), 0).toString();
             
-            for(Vehiculo v : av.getListaVehiculos())
+            if(categoria.equals("Combustion"))
             {
-                if(v.getVin() == Integer.parseInt(vin))
+                combustion();
+                for(Combustion c : ac.getListaCombustion())
                 {
-                    txt_marca1.setText(v.getMarca());
-                    txt_modelo1.setText(v.getModelo());
-                    txt_vin1.setText(vin);
-                    cb_carroceria.setSelectedItem(v.getCarroceria());
+                    if(c.getVin() == Integer.parseInt(vin))
+                    {
+                        txt_marca1.setText(c.getMarca());
+                        txt_modelo1.setText(c.getModelo());
+                        txt_vin1.setText(vin);
+                        cb_carroceria1.setSelectedItem(c.getCarroceria());
+                        txt_cilindrada1.setText(String.valueOf(c.getCilindrada()));
+                        txt_cilindros1.setValue(c.getCilindros());
+                        txt_consumo1.setText(String.valueOf(c.getConsumo()));
+                    }
                 }
             }
-            
         }
     }//GEN-LAST:event_jt_vehiculos_modMouseClicked
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -824,7 +848,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
+
     private void refrescarVehiculos(JTable vehiculos) {
         administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
         av.cargarArchivo();
@@ -843,6 +867,12 @@ public class Principal extends javax.swing.JFrame {
         txt_cilindros.setVisible(true);
         label_consumo.setVisible(true);
         txt_consumo.setVisible(true);
+        label_cilindrada1.setVisible(true);
+        txt_cilindrada1.setVisible(true);
+        label_cilindros1.setVisible(true);
+        txt_cilindros1.setVisible(true);
+        label_consumo1.setVisible(true);
+        txt_consumo1.setVisible(true);
     }
 
     private void notCombustion() {
@@ -853,6 +883,12 @@ public class Principal extends javax.swing.JFrame {
         txt_cilindros.setVisible(false);
         label_consumo.setVisible(false);
         txt_consumo.setVisible(false);
+        label_cilindrada1.setVisible(false);
+        txt_cilindrada1.setVisible(false);
+        label_cilindros1.setVisible(false);
+        txt_cilindros1.setVisible(false);
+        label_consumo1.setVisible(false);
+        txt_consumo1.setVisible(false);
     }
 
     private void hibrido() {
@@ -862,6 +898,12 @@ public class Principal extends javax.swing.JFrame {
         txt_pasajeros.setVisible(true);
         label_precio.setVisible(true);
         txt_precio.setVisible(true);
+        label_kilometros1.setVisible(true);
+        txt_kilometros1.setVisible(true);
+        label_pasajeros1.setVisible(true);
+        txt_pasajeros1.setVisible(true);
+        label_precio1.setVisible(true);
+        txt_precio1.setVisible(true);
     }
 
     private void notHibrido() {
@@ -871,13 +913,23 @@ public class Principal extends javax.swing.JFrame {
         txt_pasajeros.setVisible(false);
         label_precio.setVisible(false);
         txt_precio.setVisible(false);
+        label_kilometros1.setVisible(false);
+        txt_kilometros1.setVisible(false);
+        label_pasajeros1.setVisible(false);
+        txt_pasajeros1.setVisible(false);
+        label_precio1.setVisible(false);
+        txt_precio1.setVisible(false);
     }
-    
+
     private void hibridoEnchufable() {
         label_maletero.setVisible(true);
         txt_maletero.setVisible(true);
         label_combustible.setVisible(true);
         txt_combustible.setVisible(true);
+        label_maletero1.setVisible(true);
+        txt_maletero1.setVisible(true);
+        label_combustible1.setVisible(true);
+        txt_combustible1.setVisible(true);
     }
 
     private void nothibridoEnchufable() {
@@ -885,8 +937,12 @@ public class Principal extends javax.swing.JFrame {
         txt_maletero.setVisible(false);
         label_combustible.setVisible(false);
         txt_combustible.setVisible(false);
+        label_maletero1.setVisible(false);
+        txt_maletero1.setVisible(false);
+        label_combustible1.setVisible(false);
+        txt_combustible1.setVisible(false);
     }
-    
+
     private void electrico() {
         label_aerodinamico.setVisible(true);
         txt_aerodinamico.setVisible(true);
@@ -894,6 +950,12 @@ public class Principal extends javax.swing.JFrame {
         txt_motores.setVisible(true);
         label_recarga.setVisible(true);
         txt_recarga.setVisible(true);
+        label_aerodinamico1.setVisible(true);
+        txt_aerodinamico1.setVisible(true);
+        label_motores1.setVisible(true);
+        txt_motores1.setVisible(true);
+        label_recarga1.setVisible(true);
+        txt_recarga1.setVisible(true);
     }
 
     private void notElectrico() {
@@ -903,6 +965,12 @@ public class Principal extends javax.swing.JFrame {
         txt_motores.setVisible(false);
         label_recarga.setVisible(false);
         txt_recarga.setVisible(false);
+        label_aerodinamico1.setVisible(false);
+        txt_aerodinamico1.setVisible(false);
+        label_motores1.setVisible(false);
+        txt_motores1.setVisible(false);
+        label_recarga1.setVisible(false);
+        txt_recarga1.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
