@@ -10,15 +10,15 @@ package examen2p2_josuedejesus;
  * @author josue
  */
 public class Hibrido extends Vehiculo{
-    private double kilometros;
+    private int kilometros;
     private int pasajeros;
-    private double precio;
+    private int precio;
 
     public Hibrido() {
         super();
     }
 
-    public Hibrido(double kilometros, int pasajeros, double precio, String categoria, String marca, String modelo, int vin, String carroceria) {
+    public Hibrido(int kilometros, int pasajeros, int precio, String categoria, String marca, String modelo, int vin, String carroceria) {
         super(categoria, marca, modelo, vin, carroceria);
         this.kilometros = kilometros;
         this.pasajeros = pasajeros;
@@ -29,7 +29,7 @@ public class Hibrido extends Vehiculo{
         return kilometros;
     }
 
-    public void setKilometros(double kilometros) {
+    public void setKilometros(int kilometros) {
         this.kilometros = kilometros;
     }
 
@@ -45,7 +45,7 @@ public class Hibrido extends Vehiculo{
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

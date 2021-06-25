@@ -10,15 +10,15 @@ package examen2p2_josuedejesus;
  * @author josue
  */
 public class Combustion extends Vehiculo{
-    private  double cilindrada;
+    private  int cilindrada;
     private int cilindros;
-    private double consumo;
+    private int consumo;
 
     public Combustion() {
         super();
     }
 
-    public Combustion(double cilindrada, int cilindros, double consumo, String categoria, String marca, String modelo, int vin, String carroceria) {
+    public Combustion(int cilindrada, int cilindros, int consumo, String categoria, String marca, String modelo, int vin, String carroceria) {
         super(categoria, marca, modelo, vin, carroceria);
         this.cilindrada = cilindrada;
         this.cilindros = cilindros;
@@ -29,7 +29,7 @@ public class Combustion extends Vehiculo{
         return cilindrada;
     }
 
-    public void setCilindrada(double cilindrada) {
+    public void setCilindrada(int cilindrada) {
         this.cilindrada = cilindrada;
     }
 
@@ -45,7 +45,7 @@ public class Combustion extends Vehiculo{
         return consumo;
     }
 
-    public void setConsumo(double consumo) {
+    public void setConsumo(int consumo) {
         this.consumo = consumo;
     }
 
