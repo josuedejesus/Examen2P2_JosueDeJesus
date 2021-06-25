@@ -5,11 +5,13 @@
  */
 package examen2p2_josuedejesus;
 
+import java.io.Serializable;
+
 /**
  *
  * @author josue
  */
-public class Vehiculo {
+public class Vehiculo implements Serializable{
     private String categoria;
     private String marca;
     private String modelo;
@@ -18,6 +20,8 @@ public class Vehiculo {
 
     public Vehiculo() {
     }
+    
+    private static final long SerialVersionUID = 777L;
 
     public Vehiculo(String categoria, String marca, String modelo, int vin, String carroceria) {
         this.categoria = categoria;
