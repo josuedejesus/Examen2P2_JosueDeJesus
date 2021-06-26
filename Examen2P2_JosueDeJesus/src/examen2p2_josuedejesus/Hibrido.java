@@ -18,7 +18,7 @@ public class Hibrido extends Vehiculo{
         super();
     }
 
-    public Hibrido(int kilometros, int pasajeros, int precio, String categoria, String marca, String modelo, int vin, String carroceria) {
+    public Hibrido(String categoria, String marca, String modelo, int vin, String carroceria, int kilometros, int pasajeros, int precio) {
         super(categoria, marca, modelo, vin, carroceria);
         this.kilometros = kilometros;
         this.pasajeros = pasajeros;
