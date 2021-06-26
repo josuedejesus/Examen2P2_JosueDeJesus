@@ -2,9 +2,11 @@ package examen2p2_josuedejesus;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import org.w3c.dom.events.Event;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -32,6 +34,10 @@ public class Principal extends javax.swing.JFrame {
         nothibridoEnchufable();
         //Electrico
         notElectrico();
+
+        HT = new administrarProgreso(this.barra);
+        b = new bitacora(barra);
+
     }
 
     /**
@@ -41,7 +47,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jd_ensamblaje = new javax.swing.JDialog();
+        jd_baterias = new javax.swing.JDialog();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel9 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -94,6 +100,20 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane12 = new javax.swing.JScrollPane();
         jt_baterias_del = new javax.swing.JTable();
         button5 = new java.awt.Button();
+        jd_ensamblaje = new javax.swing.JDialog();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jt_ensamblar_vehiculos = new javax.swing.JTable();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        jt_ensamblar_baterias = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        barra = new javax.swing.JProgressBar();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -108,7 +128,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        butt_guardar = new java.awt.Button();
         jPanel3 = new javax.swing.JPanel();
         label_cilindrada = new javax.swing.JLabel();
         label_cilindros = new javax.swing.JLabel();
@@ -132,7 +151,10 @@ public class Principal extends javax.swing.JFrame {
         txt_consumo = new java.awt.TextField();
         txt_cilindros = new javax.swing.JSpinner();
         txt_cilindrada = new java.awt.TextField();
+        butt_guardar = new java.awt.Button();
+        jPanel15 = new javax.swing.JPanel();
         Ensamblaje = new java.awt.Button();
+        button6 = new java.awt.Button();
         jPanel4 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -569,20 +591,151 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Eliminar", jPanel14);
 
+        javax.swing.GroupLayout jd_bateriasLayout = new javax.swing.GroupLayout(jd_baterias.getContentPane());
+        jd_baterias.getContentPane().setLayout(jd_bateriasLayout);
+        jd_bateriasLayout.setHorizontalGroup(
+            jd_bateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_bateriasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
+        );
+        jd_bateriasLayout.setVerticalGroup(
+            jd_bateriasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_bateriasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
+        );
+
+        jd_ensamblaje.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jd_ensamblajeComponentShown(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel12.setText("Ensamblar Vehiculo");
+
+        jt_ensamblar_vehiculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane14.setViewportView(jt_ensamblar_vehiculos);
+
+        jScrollPane13.setViewportView(jScrollPane14);
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        jLabel13.setText("Seleccionar vehiculo");
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 2, 11)); // NOI18N
+        jLabel14.setText("Seleccionar bateria");
+
+        jt_ensamblar_baterias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane16.setViewportView(jt_ensamblar_baterias);
+
+        jScrollPane15.setViewportView(jScrollPane16);
+
+        jButton2.setText("Ensamblar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        barra.setStringPainted(true);
+        barra.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                barraStateChanged(evt);
+            }
+        });
+        barra.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                barraComponentShown(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(barra, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel16Layout.createSequentialGroup()
+                                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                        .addGap(0, 695, Short.MAX_VALUE)
+                        .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(762, 762, 762))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(688, 688, 688))))))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                .addComponent(barra, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(224, 224, 224))
+        );
+
+        jTabbedPane3.addTab("tab1", jPanel16);
+
         javax.swing.GroupLayout jd_ensamblajeLayout = new javax.swing.GroupLayout(jd_ensamblaje.getContentPane());
         jd_ensamblaje.getContentPane().setLayout(jd_ensamblajeLayout);
         jd_ensamblajeLayout.setHorizontalGroup(
             jd_ensamblajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ensamblajeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane3)
                 .addContainerGap())
         );
         jd_ensamblajeLayout.setVerticalGroup(
             jd_ensamblajeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ensamblajeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane2)
+                .addComponent(jTabbedPane3)
                 .addContainerGap())
         );
 
@@ -672,13 +825,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(50, Short.MAX_VALUE))
         );
 
-        butt_guardar.setLabel("Guardar");
-        butt_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                butt_guardarMouseClicked(evt);
-            }
-        });
-
         label_cilindrada.setText("Cilindrada del motor");
 
         label_cilindros.setText("Cantidad de cilindros");
@@ -704,6 +850,13 @@ public class Principal extends javax.swing.JFrame {
         txt_pasajeros.setModel(new javax.swing.SpinnerNumberModel(1, 1, 8, 1));
 
         txt_cilindros.setModel(new javax.swing.SpinnerNumberModel(3, 3, 8, 1));
+
+        butt_guardar.setLabel("Guardar");
+        butt_guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                butt_guardarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -740,6 +893,10 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(txt_motores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_recarga, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(butt_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -795,50 +952,87 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txt_recarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_recarga))
-                .addGap(74, 74, 74))
+                .addGap(40, 40, 40)
+                .addComponent(butt_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        Ensamblaje.setLabel("Ensamblaje");
+        jPanel15.setBackground(java.awt.Color.gray);
+
+        Ensamblaje.setLabel("Crear Bateria");
         Ensamblaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 EnsamblajeMouseClicked(evt);
             }
         });
+        Ensamblaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EnsamblajeActionPerformed(evt);
+            }
+        });
+
+        button6.setLabel("Ensamblaje");
+        button6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                button6MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Ensamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Ensamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(475, 475, 475))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(301, 301, 301)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(butt_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(123, 389, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Ensamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 268, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(370, 370, 370)))
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(butt_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(Ensamblaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Crear", jPanel2);
@@ -888,7 +1082,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(534, Short.MAX_VALUE))
+                .addContainerGap(493, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Listar", jPanel4);
@@ -1211,7 +1405,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(491, Short.MAX_VALUE))
+                .addContainerGap(450, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Eliminar", jPanel7);
@@ -1229,7 +1423,7 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 876, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1378,7 +1572,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void EnsamblajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EnsamblajeMouseClicked
         // TODO add your handling code here:
-        abreEnsamblake();
+        abreEnsamblake(jd_baterias);
     }//GEN-LAST:event_EnsamblajeMouseClicked
 
     private void button2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button2MouseClicked
@@ -1410,7 +1604,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void button3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button3MouseClicked
         // TODO add your handling code here:
-        jd_ensamblaje.dispose();
+        jd_baterias.dispose();
         this.setVisible(true);
     }//GEN-LAST:event_button3MouseClicked
 
@@ -1490,6 +1684,110 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_button5MouseClicked
 
+    private void EnsamblajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnsamblajeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EnsamblajeActionPerformed
+
+    private void button6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button6MouseClicked
+        // TODO add your handling code here:
+        abreEnsamblake(jd_ensamblaje);
+        refrescarVehiculos(jt_ensamblar_vehiculos);
+        refrescarBaterias(jt_ensamblar_baterias);
+    }//GEN-LAST:event_button6MouseClicked
+
+    private void jd_ensamblajeComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jd_ensamblajeComponentShown
+        // TODO add your handling code here:
+        refrescarVehiculos(jt_ensamblar_vehiculos);
+        refrescarBaterias(jt_ensamblar_baterias);
+    }//GEN-LAST:event_jd_ensamblajeComponentShown
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        try { //por si ya esta iniciado
+            if (!b.isFlag()) {
+                HT.start();
+                b.start();
+            }
+        } catch (Exception e) {
+
+        }
+
+        HT.setAvanzar(true);
+        b.setAvanzar(true);
+
+        if (barra.getString().equals("100%")) {
+            JOptionPane.showMessageDialog(this, "Bateria ensamblada exitosamente");
+            administrarEnsamblados ab = new administrarEnsamblados("./ensamblados.cbm");
+            ab.cargarArchivo();
+
+            administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
+            av.cargarArchivo();
+
+            administrarBateria at = new administrarBateria("./baterias.cbm");
+            at.cargarArchivo();
+
+            DefaultTableModel modelo = (DefaultTableModel) jt_ensamblar_vehiculos.getModel();
+            DefaultTableModel modelo2 = (DefaultTableModel) jt_ensamblar_baterias.getModel();
+
+            boolean existe = false;
+
+            String categoria = "";
+            String marca = "";
+            String modeloVehiculo = "";
+            int vin = 0;
+            String carroceria = "";
+
+            int capacidad = 0;
+            String autonomía = "";
+            int modulos = 0;
+            int carga = 0;
+            int ensamblaje = 0;
+
+            try {
+
+                for (Vehiculo v : av.getListaVehiculos()) {
+                    if (v.getVin() == Integer.parseInt(modelo.getValueAt(jt_ensamblar_vehiculos.getSelectedRow(), 3).toString())) {
+                        categoria = v.getCategoria();
+                        marca = v.getMarca();
+                        modeloVehiculo = v.getModelo();
+                        vin = v.getVin();
+                        carroceria = v.getCarroceria();
+                    }
+                }
+
+                for (Bateria b : at.getListaBaterias()) {
+                    if (b.getMarca().equals(modelo2.getValueAt(jt_ensamblar_baterias.getSelectedRow(), 0))) {
+                        capacidad = b.getCapacidad();
+                        autonomía = b.getAutonomía();
+                        modulos = b.getModulos();
+                        carga = b.getCarga();
+                        ensamblaje = b.getEnsamblaje();
+                    }
+                }
+                Ensamblado c = new Ensamblado(categoria, marca, modeloVehiculo, vin, carroceria, capacidad, autonomía, modulos, carga, ensamblaje);
+                ab.setEnsamblado(c);
+                ab.escribirArchivo();
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo guardar la informacion!");
+
+            }
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void barraStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_barraStateChanged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_barraStateChanged
+
+    private void barraComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_barraComponentShown
+        // TODO add your handling code here:
+        if (barra.getString().equals("100%")) {
+            JOptionPane.showMessageDialog(this, "Bateria ensamblada exitosamente");
+
+        }
+    }//GEN-LAST:event_barraComponentShown
+
     /**
      * @param args the command line arguments
      */
@@ -1535,7 +1833,7 @@ public class Principal extends javax.swing.JFrame {
             datos.addRow(tabla);
         }
     }
-    
+
     private void refrescarBaterias(JTable vehiculos) {
         administrarBateria av = new administrarBateria("./baterias.cbm");
         av.cargarArchivo();
@@ -1659,32 +1957,37 @@ public class Principal extends javax.swing.JFrame {
         label_recarga1.setVisible(false);
         txt_recarga1.setVisible(false);
     }
-    
-    private void abreEnsamblake() {
-        this.setVisible(false);
-        jd_ensamblaje.setModal(true);
-        jd_ensamblaje.pack();
-        jd_ensamblaje.setLocationRelativeTo(this);
-        jd_ensamblaje.setVisible(true);
+
+    private void abreEnsamblake(JDialog jd) {
+        jd.setModal(true);
+        jd.pack();
+        jd.setLocationRelativeTo(this);
+        jd.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button Ensamblaje;
+    private javax.swing.JProgressBar barra;
     private java.awt.Button butt_guardar;
     private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Button button3;
     private java.awt.Button button4;
     private java.awt.Button button5;
+    private java.awt.Button button6;
     private javax.swing.JComboBox<String> cb_carroceria;
     private javax.swing.JComboBox<String> cb_carroceria1;
     private javax.swing.JComboBox<String> cb_categoria;
     private javax.swing.JComboBox<String> cb_categoria1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1699,6 +2002,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1711,6 +2016,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
+    private javax.swing.JScrollPane jScrollPane13;
+    private javax.swing.JScrollPane jScrollPane14;
+    private javax.swing.JScrollPane jScrollPane15;
+    private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1721,10 +2030,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
+    private javax.swing.JDialog jd_baterias;
     private javax.swing.JDialog jd_ensamblaje;
     private javax.swing.JTable jt_baterias;
     private javax.swing.JTable jt_baterias_del;
     private javax.swing.JTable jt_baterias_mod;
+    private javax.swing.JTable jt_ensamblar_baterias;
+    private javax.swing.JTable jt_ensamblar_vehiculos;
     private javax.swing.JTable jt_vehiculos;
     private javax.swing.JTable jt_vehiculos_del;
     private javax.swing.JTable jt_vehiculos_mod;
@@ -1814,4 +2127,7 @@ public class Principal extends javax.swing.JFrame {
     private java.awt.TextField txt_vin;
     private java.awt.TextField txt_vin1;
     // End of variables declaration//GEN-END:variables
+
+    administrarProgreso HT;
+    bitacora b;
 }
