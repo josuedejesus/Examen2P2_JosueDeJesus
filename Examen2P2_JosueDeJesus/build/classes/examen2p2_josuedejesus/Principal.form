@@ -2,7 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Container class="javax.swing.JDialog" name="jDialog1">
+    <Container class="javax.swing.JDialog" name="jd_ensamblaje">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -26,6 +26,9 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTabbedPane2StateChanged"/>
+          </Events>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
@@ -41,15 +44,20 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="308" max="-2" attributes="0"/>
-                          <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="388" max="32767" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="button3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="label4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="551" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="308" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="button2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="279" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -57,10 +65,15 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="label4" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="label4" min="-2" max="-2" attributes="0"/>
+                              <Component id="button3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="229" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="button2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="312" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -142,7 +155,7 @@
                                   <Component id="txt_ensamblaje" min="-2" max="-2" attributes="0"/>
                                   <Component id="label10" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="170" max="32767" attributes="0"/>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -219,13 +232,29 @@
                     <Property name="text" type="java.lang.String" value="Crear Bateria"/>
                   </Properties>
                 </Component>
+                <Component class="java.awt.Button" name="button2">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="Guardar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button2MouseClicked"/>
+                  </Events>
+                </Component>
+                <Component class="java.awt.Button" name="button3">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="Regresar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button3MouseClicked"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel10">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="tab2">
-                    <Property name="tabTitle" type="java.lang.String" value="tab2"/>
+                  <JTabbedPaneConstraints tabName="Listar">
+                    <Property name="tabTitle" type="java.lang.String" value="Listar"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -233,21 +262,68 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1280" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="502" max="-2" attributes="0"/>
+                          <Component id="label11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="513" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="849" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="label11" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" min="-2" pref="300" max="-2" attributes="0"/>
+                          <EmptySpace pref="493" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jt_baterias">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="0" rowCount="4"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="java.awt.Label" name="label11">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="24" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Listar Baterias"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="jPanel11">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="tab3">
-                    <Property name="tabTitle" type="java.lang.String" value="tab3"/>
+                  <JTabbedPaneConstraints tabName="Modificar">
+                    <Property name="tabTitle" type="java.lang.String" value="Modificar"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -255,15 +331,322 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="1280" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane9" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="242" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="button4" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="582" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="label12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="487" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="849" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="label12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane9" min="-2" pref="300" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Component id="jPanel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="button4" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="18" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
+              <SubComponents>
+                <Component class="java.awt.Label" name="label12">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="24" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Modificar Bateria"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane9">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane10">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jt_baterias_mod">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="0" rowCount="4"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jt_baterias_modMouseClicked"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel13">
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace pref="136" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="label_marca_bat1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label15" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label16" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label18" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="label13" alignment="1" pref="0" max="32767" attributes="0"/>
+                                      <Component id="label14" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="label17" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txt_capacidad_carga1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_modulos1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_autonomia1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_capacidad1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_marca_bat1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_categoria_bat1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txt_ensamblaje1" alignment="1" min="-2" pref="170" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="txt_marca_bat1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="label_marca_bat1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txt_capacidad1" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="label13" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_autonomia1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="label14" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txt_modulos1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="label15" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txt_capacidad_carga1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="label16" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txt_categoria_bat1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label17" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txt_ensamblaje1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="label18" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="53" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="java.awt.TextField" name="txt_marca_bat1">
+                    </Component>
+                    <Component class="java.awt.TextField" name="txt_capacidad1">
+                    </Component>
+                    <Component class="java.awt.TextField" name="txt_autonomia1">
+                    </Component>
+                    <Component class="java.awt.TextField" name="txt_modulos1">
+                    </Component>
+                    <Component class="java.awt.TextField" name="txt_capacidad_carga1">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="txt_categoria_bat1">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Hibrido"/>
+                            <StringItem index="1" value="Hibrido enchufable"/>
+                            <StringItem index="2" value="Electrico"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="java.awt.TextField" name="txt_ensamblaje1">
+                    </Component>
+                    <Component class="java.awt.Label" name="label_marca_bat1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Marca"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label13">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Capacidad"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label14">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Autonomia"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label15">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Modulos"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label16">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Capacidad de carga"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label17">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Categoria de vehiculo"/>
+                      </Properties>
+                    </Component>
+                    <Component class="java.awt.Label" name="label18">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Tiempo de ensamblaje"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="java.awt.Button" name="button4">
+                  <Properties>
+                    <Property name="enabled" type="boolean" value="false"/>
+                    <Property name="label" type="java.lang.String" value="Actualizar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button4MouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel14">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="Eliminar">
+                    <Property name="tabTitle" type="java.lang.String" value="Eliminar"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="505" max="32767" attributes="0"/>
+                          <Component id="label19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="493" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane11" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="button5" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="536" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="label19" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane11" min="-2" pref="300" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="button5" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="459" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="java.awt.Label" name="label19">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Dialog" size="24" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Eliminar Bateria"/>
+                  </Properties>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane11">
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane12">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jt_baterias_del">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="0" rowCount="4"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Component class="java.awt.Button" name="button5">
+                  <Properties>
+                    <Property name="label" type="java.lang.String" value="Eliminar"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button5MouseClicked"/>
+                  </Events>
+                </Component>
+              </SubComponents>
             </Container>
           </SubComponents>
         </Container>

@@ -18,19 +18,19 @@ import java.util.ArrayList;
  * @author josue
  */
 public class administrarBateria {
-    private ArrayList<Hibrido> listaHibrido = new ArrayList();
+    private ArrayList<Bateria> listaBaterias = new ArrayList();
     private File archivo = null;
 
     public administrarBateria(String path) {
         archivo = new File(path);
     }
 
-    public ArrayList<Hibrido> getListaHibrido() {
-        return listaHibrido;
+    public ArrayList<Bateria> getListaBaterias() {
+        return listaBaterias;
     }
 
-    public void setListaHibrido(ArrayList<Hibrido> listaHibrido) {
-        this.listaHibrido = listaHibrido;
+    public void setListaBaterias(ArrayList<Bateria> listaBaterias) {
+        this.listaBaterias = listaBaterias;
     }
 
     public File getArchivo() {
@@ -43,26 +43,26 @@ public class administrarBateria {
 
     @Override
     public String toString() {
-        return "listaHibrido=" + listaHibrido;
+        return "listaBaterias=" + listaBaterias;
     }
 
     //extra mutador
-    public void setHibrido(Hibrido a) {
-        this.listaHibrido.add(a);
+    public void setBateria(Bateria a) {
+        this.listaBaterias.add(a);
     }
 
     public void cargarArchivo() {
         try {
-            listaHibrido = new ArrayList();
-            Hibrido temp;
+            listaBaterias = new ArrayList();
+            Bateria temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                         = new FileInputStream(archivo);
                 ObjectInputStream objeto
                         = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Hibrido) objeto.readObject()) != null) {
-                        listaHibrido.add(temp);
+                    while ((temp = (Bateria) objeto.readObject()) != null) {
+                        listaBaterias.add(temp);
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
@@ -81,7 +81,7 @@ public class administrarBateria {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Hibrido a : listaHibrido) {
+            for (Bateria a : listaBaterias) {
                 bw.writeObject(a);
             }
             bw.flush();
