@@ -9,7 +9,8 @@ package examen2p2_josuedejesus;
  *
  * @author josue
  */
-public class HibridoEnchufable extends Vehiculo{
+public class HibridoEnchufable extends Vehiculo {
+
     private int capacidadMaletero;
     private int combustible;
 
@@ -17,7 +18,7 @@ public class HibridoEnchufable extends Vehiculo{
         super();
     }
 
-    public HibridoEnchufable(int capacidadMaletero, int combustible, String categoria, String marca, String modelo, int vin, String carroceria) {
+    public HibridoEnchufable(String categoria, String marca, String modelo, int vin, String carroceria, int capacidadMaletero, int combustible) {
         super(categoria, marca, modelo, vin, carroceria);
         this.capacidadMaletero = capacidadMaletero;
         this.combustible = combustible;
@@ -43,6 +44,5 @@ public class HibridoEnchufable extends Vehiculo{
     public String toString() {
         return "HibridoEnchufable{" + "capacidadMaletero=" + capacidadMaletero + ", combustible=" + combustible + '}';
     }
-    
-    
+
 }

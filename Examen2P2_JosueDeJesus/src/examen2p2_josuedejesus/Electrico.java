@@ -9,7 +9,8 @@ package examen2p2_josuedejesus;
  *
  * @author josue
  */
-public class Electrico extends Vehiculo{
+public class Electrico extends Vehiculo {
+
     private int coeficienteAerodinamico;
     private int motores;
     private int recarga;
@@ -18,7 +19,7 @@ public class Electrico extends Vehiculo{
         super();
     }
 
-    public Electrico(int coeficienteAerodinamico, int motores, int recarga, String categoria, String marca, String modelo, int vin, String carroceria) {
+    public Electrico(String categoria, String marca, String modelo, int vin, String carroceria, int coeficienteAerodinamico, int motores, int recarga) {
         super(categoria, marca, modelo, vin, carroceria);
         this.coeficienteAerodinamico = coeficienteAerodinamico;
         this.motores = motores;
@@ -53,6 +54,5 @@ public class Electrico extends Vehiculo{
     public String toString() {
         return "Electrico{" + "coeficienteAerodinamico=" + coeficienteAerodinamico + ", motores=" + motores + ", recarga=" + recarga + '}';
     }
-    
-    
+
 }

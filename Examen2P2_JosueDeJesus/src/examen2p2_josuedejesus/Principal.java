@@ -114,6 +114,11 @@ public class Principal extends javax.swing.JFrame {
         jt_ensamblar_baterias = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         barra = new javax.swing.JProgressBar();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jt_listar_ensambles = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -614,6 +619,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jTabbedPane3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane3StateChanged(evt);
+            }
+        });
+
         jLabel12.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel12.setText("Ensamblar Vehiculo");
 
@@ -720,7 +731,50 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(224, 224, 224))
         );
 
-        jTabbedPane3.addTab("tab1", jPanel16);
+        jTabbedPane3.addTab("Ensamblar", jPanel16);
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel15.setText("Listar Vehiculos Ensamblados");
+
+        jt_listar_ensambles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane18.setViewportView(jt_listar_ensambles);
+
+        jScrollPane17.setViewportView(jScrollPane18);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane17)
+                .addContainerGap())
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGap(635, 635, 635)
+                .addComponent(jLabel15)
+                .addContainerGap(652, Short.MAX_VALUE))
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(607, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("Listar", jPanel17);
 
         javax.swing.GroupLayout jd_ensamblajeLayout = new javax.swing.GroupLayout(jd_ensamblaje.getContentPane());
         jd_ensamblaje.getContentPane().setLayout(jd_ensamblajeLayout);
@@ -1467,10 +1521,7 @@ public class Principal extends javax.swing.JFrame {
 
         administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
         av.cargarArchivo();
-        administrarCombustion ac = new administrarCombustion("./vehiculos.cbm");
-        ac.cargarArchivo();
-        administrarHibrido ah = new administrarHibrido("./vehiculos.cbm");
-        ah.cargarArchivo();
+        
 
         try {
             for (Vehiculo a : av.getListaVehiculos()) {
@@ -1490,6 +1541,20 @@ public class Principal extends javax.swing.JFrame {
 
                 if (cb_categoria.getSelectedItem().equals("Hibrido")) {
                     Vehiculo h = new Hibrido(cb_categoria.getSelectedItem().toString(), txt_marca.getText(), txt_modelo.getText(), Integer.parseInt(txt_vin.getText()), cb_carroceria.getSelectedItem().toString(), Integer.parseInt(txt_kilometros.getText()), Integer.parseInt(txt_pasajeros.getValue().toString()), Integer.parseInt(txt_precio.getText()));
+                    av.setVehiculo(h);
+                    av.escribirArchivo();
+                    JOptionPane.showMessageDialog(this, "Guardado exitosamente");
+                }
+                
+                if (cb_categoria.getSelectedItem().equals("Hibrido enchufable")) {
+                    Vehiculo h = new HibridoEnchufable(cb_categoria.getSelectedItem().toString(), txt_marca.getText(), txt_modelo.getText(), Integer.parseInt(txt_vin.getText()), cb_carroceria.getSelectedItem().toString(), Integer.parseInt(txt_maletero.getText()), Integer.parseInt(txt_combustible.getText()));
+                    av.setVehiculo(h);
+                    av.escribirArchivo();
+                    JOptionPane.showMessageDialog(this, "Guardado exitosamente");
+                }
+                
+                if (cb_categoria.getSelectedItem().equals("Electrico")) {
+                    Vehiculo h = new Electrico(cb_categoria.getSelectedItem().toString(), txt_marca.getText(), txt_modelo.getText(), Integer.parseInt(txt_vin.getText()), cb_carroceria.getSelectedItem().toString(), Integer.parseInt(txt_aerodinamico.getText()), Integer.parseInt(txt_motores.getText()), Integer.parseInt(txt_recarga.getText()));
                     av.setVehiculo(h);
                     av.escribirArchivo();
                     JOptionPane.showMessageDialog(this, "Guardado exitosamente");
@@ -1691,7 +1756,7 @@ public class Principal extends javax.swing.JFrame {
     private void button6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button6MouseClicked
         // TODO add your handling code here:
         abreEnsamblake(jd_ensamblaje);
-        refrescarVehiculos(jt_ensamblar_vehiculos);
+        refrescarVehiculosBateria(jt_ensamblar_baterias);
         refrescarBaterias(jt_ensamblar_baterias);
     }//GEN-LAST:event_button6MouseClicked
 
@@ -1788,6 +1853,11 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_barraComponentShown
 
+    private void jTabbedPane3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane3StateChanged
+        // TODO add your handling code here:
+        refrescarEnsambles();
+    }//GEN-LAST:event_jTabbedPane3StateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -1834,6 +1904,19 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    private void refrescarVehiculosBateria(JTable vehiculos) {
+        administrarVehiculos av = new administrarVehiculos("./vehiculos.cbm");
+        av.cargarArchivo();
+        vehiculos.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Categoria", "Marca", "Modelo", "VIN", "Carroceria"}));
+        DefaultTableModel datos = (DefaultTableModel) vehiculos.getModel();
+        for (Vehiculo t : av.getListaVehiculos()) {
+            if (t.getCategoria().equals("Hibrido") || t.getCategoria().equals("Hibrido enchufable") || t.getCategoria().equals("Electrico")) {
+                Object tabla[] = {t.getCategoria(), t.getMarca(), t.getModelo(), t.getVin(), t.getCarroceria()};
+                datos.addRow(tabla);
+            }
+        }
+    }
+
     private void refrescarBaterias(JTable vehiculos) {
         administrarBateria av = new administrarBateria("./baterias.cbm");
         av.cargarArchivo();
@@ -1841,6 +1924,17 @@ public class Principal extends javax.swing.JFrame {
         DefaultTableModel datos = (DefaultTableModel) vehiculos.getModel();
         for (Bateria t : av.getListaBaterias()) {
             Object tabla[] = {t.getMarca(), t.getCapacidad(), t.getAutonomía(), t.getModulos(), t.getCarga(), t.getCategoria(), t.getEnsamblaje()};
+            datos.addRow(tabla);
+        }
+    }
+
+    private void refrescarEnsambles() {
+        administrarEnsamblados av = new administrarEnsamblados("./ensamblados.cbm");
+        av.cargarArchivo();
+        jt_listar_ensambles.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{}, new String[]{"Categoria", "Marca", "Modelo", "VIN", "Carroceria", "Capacidad", "Autonomia", "Modulos", "Capacidad de Carga", "Tiempo de Ensamblaje"}));
+        DefaultTableModel datos = (DefaultTableModel) jt_listar_ensambles.getModel();
+        for (Ensamblado t : av.getListaEnsamblados()) {
+            Object tabla[] = {t.getCategoria(), t.getMarca(), t.getModelo(), t.getVin(), t.getCarroceria(), t.getCapacidad(), t.getAutonomía(), t.getModulos(), t.getCarga(), t.getEnsamblaje()};
             datos.addRow(tabla);
         }
     }
@@ -1988,6 +2082,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2004,6 +2099,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -2020,6 +2116,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2038,6 +2136,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jt_baterias_mod;
     private javax.swing.JTable jt_ensamblar_baterias;
     private javax.swing.JTable jt_ensamblar_vehiculos;
+    private javax.swing.JTable jt_listar_ensambles;
     private javax.swing.JTable jt_vehiculos;
     private javax.swing.JTable jt_vehiculos_del;
     private javax.swing.JTable jt_vehiculos_mod;
